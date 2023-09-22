@@ -202,7 +202,7 @@ function doit(t, args) {
 			case /*S*/  83:
 			case /*s*/ 115:
 				/* only valid flag is "-" for left justification */
-				O = String(arg);
+				O = PRINTJ.stringFormatter(arg);
 				if( prec >= 0) O = O.substr(0,  prec);
 				if( width > O.length || - width > O.length) { if(( flags.indexOf("-") == -1 ||  width < 0) &&  flags.indexOf("0") != -1) { pad = ( width - O.length >= 0 ? "0".repeat( width - O.length) : ""); O = pad + O; } else { pad = ( width - O.length >= 0 ? " ".repeat( width - O.length) : ""); O =  flags.indexOf("-") > -1 ? O + pad : pad + O; } }
 				break;
@@ -593,6 +593,7 @@ function sprintf() {
 	return doit(tokenize(arguments[0]), args);
 }
 
+PRINTJ.stringFormatter = (s) => String(s);
 PRINTJ.sprintf = sprintf;
 PRINTJ.vsprintf = vsprintf;
 PRINTJ._doit = doit;
